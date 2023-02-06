@@ -1,0 +1,589 @@
+openapi: 3.0.0
+info:
+  title: управление роботом-пылесосом
+  version: 0.0.1
+servers:
+  - url: http://localhost:8080/api/v1/
+    description: Dev server
+paths:
+  /robot:
+    put:
+      summary: обновление
+      tags:
+        - Robot
+      operationId: updateRobot
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Robot"
+      responses:
+        "200":
+          description: Успешное обновление робота
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Robots"
+        "default":
+          description: все нестандартное
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"  
+    
+    post:  
+      summary: Добавление/создания робота пылесоса
+      tags:
+        - Robot
+      operationId: createRobot 
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Robot"
+      responses:
+        "200":
+          description: Успешный ответ при добавлении робота-пылесоса
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Robot"
+        "default":
+          description: все нестандартное
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"      
+    
+  
+  /robot/findById{robot_id}:              
+    get:
+      summary: Найти  робота-пылесоса по индетификатору
+      tags:
+        - Robot
+      operationId: findRobotById
+      parameters: 
+        - name: robot_id
+          in: path
+          required: true
+          description: Идентификатор робота-пылесоса
+          schema:
+            type: integer
+          example: 12115212
+      responses:
+        "200":
+          description: Успешный ответ получения робота-пылесоса
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Robot"
+        "default":
+          description: все нестандартное
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"      
+ 
+  /robot/deleteById{robot_id}:                     
+    delete:            
+      summary: удаление робота-пылесоса по идентификатору
+      tags:
+        - Robot
+      operationId: deleteRobotById
+      parameters: 
+        - name: robot_id
+          in: path
+          required: true
+          description: Идентификатор робота-пылесоса
+          schema:
+            type: integer
+          example: 12115212
+      responses:
+        "200":
+          description: успешное удаление робота-пылесоса
+          content:
+            application/json: {}
+        "default":
+          description: все нестандартное
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"              
+
+
+  /shedule:
+    put:
+      summary: обновление
+      tags:
+        - Shedule
+      operationId: updateShedule
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Shedule"
+      responses:
+        "200":
+          description: Успешное обновление расписания
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Shedules"
+        "default":
+          description: все нестандартное
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"  
+    
+    post:  
+      summary: Добавление/создания расписания
+      tags:
+        - Shedule
+      operationId: createShedule
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Shedule"
+      responses:
+        "200":
+          description: Успешный ответ при создании расписания
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Shedule"
+        "default":
+          description: все нестандартное
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"      
+    
+  
+  /shedule/findById{shedule_id}:              
+    get:
+      summary: Найти  расписание  по индетификатору
+      tags:
+        - Shedule
+      operationId: findSheduleById
+      parameters: 
+        - name: shedule_id
+          in: path
+          required: true
+          description: Идентификатор расписания
+          schema:
+            type: integer
+          example: 12
+      responses:
+        "200":
+          description: Успешный ответ получения расписания
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Shedule"
+        "default":
+          description: все нестандартное
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"      
+ 
+  /shedule/deleteById{shedule_id}:                     
+    delete:            
+      summary: удаление расписания по идентификатору
+      tags:
+        - Shedule
+      operationId: deleteSheduleById
+      parameters: 
+        - name: shedule_id
+          in: path
+          required: true
+          description: Идентификатор расписания
+          schema:
+            type: integer
+          example: 12
+      responses:
+        "200":
+          description: успешное удаление расписания
+          content:
+            application/json: {}
+        "default":
+          description: все нестандартное
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"              
+
+
+  /group:
+    put:
+      summary: обновление
+      tags:
+        - Group
+      operationId: updateGroup
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Group"
+      responses:
+        "200":
+          description: Успешное обновление группы
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Group"
+        "default":
+          description: все нестандартное
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"  
+    
+    post:  
+      summary: Добавление/создания группы
+      tags:
+        - Group
+      operationId: createGroup
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Group"
+      responses:
+        "200":
+          description: Успешный ответ при создании группы
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Group"
+        "default":
+          description: все нестандартное
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"      
+    
+  
+  /group/findById{group_id}:              
+    get:
+      summary: Найти  группу  по индетификатору
+      tags:
+        - Group
+      operationId: findGroupById
+      parameters: 
+        - name: group_id
+          in: path
+          required: true
+          description: Идентификатор группы
+          schema:
+            type: integer
+          example: 2
+      responses:
+        "200":
+          description: Успешный ответ получения группы
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Group"
+        "default":
+          description: все нестандартное
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"      
+ 
+  /group/deleteById{group_id}:                     
+    delete:            
+      summary: удаление группы по идентификатору
+      tags:
+        - Group
+      operationId: deleteGroupById
+      parameters: 
+        - name: group_id
+          in: path
+          required: true
+          description: Идентификатор группы
+          schema:
+            type: integer
+          example: 2
+      responses:
+        "200":
+          description: успешное удаление группы
+          content:
+            application/json: {}
+        "default":
+          description: все нестандартное
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"             
+
+
+  /user:
+    put:
+      summary: обновление
+      tags:
+        - User
+      operationId: updateUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        "200":
+          description: Успешное обновление пользователя
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Users"
+        "default":
+          description: все нестандартное
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"  
+    
+    post:  
+      summary: Добавление/создания пользователя
+      tags:
+        - User
+      operationId: createUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        "200":
+          description: Успешный ответ при создании пользователя
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "default":
+          description: все нестандартное
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"      
+    
+  
+  /user/findById{user_id}:              
+    get:
+      summary: Найти  пользователя  по индетификатору
+      tags:
+        - User
+      operationId: findUserById
+      parameters: 
+        - name: user_id
+          in: path
+          required: true
+          description: Идентификатор пользователя
+          schema:
+            type: integer
+          example: 10
+      responses:
+        "200":
+          description: Успешный ответ получения пользователя
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "default":
+          description: все нестандартное
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"      
+ 
+  /user/deleteById{user_id}:                     
+    delete:            
+      summary: удаление пользователя по идентификатору
+      tags:
+        - User
+      operationId: deleteUserById
+      parameters: 
+        - name: user_id
+          in: path
+          required: true
+          description: Идентификатор пользователя
+          schema:
+            type: integer
+          example: 4
+      responses:
+        "200":
+          description: успешное удаление пользователя
+          content:
+            application/json: {}
+        "default":
+          description: все нестандартное
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"             
+
+
+components:
+  schemas:
+    Robot:
+      type: object
+      required:
+        - model
+        - version
+        - serNum
+        - status
+        - groupId
+        - ipAdress
+        - bettery
+        - container
+      properties:
+        robot_id:
+          type: integer
+          example: 12
+        model:
+          type: string
+          example: a12ff1f222-2022
+        version:
+          type: string
+          example: 2.52
+        serNum:
+          type: string
+          example: s-20120-23
+        status:
+          type: string
+          enum:
+            - cleaning
+            - offline
+            - charging
+            - expectation
+          description: состояние (статус) робота-пылесоса   
+        groupId:
+          type: integer
+          example: 3
+        ipAdress:
+          type: string
+          example: 125:250:111
+        bettery:
+          type: integer
+          example: 25
+        container:
+          type: integer
+          example: 70 
+    
+    Robots:      
+      type: array
+      items:
+        $ref: "#/components/schemas/Robot"
+  
+    Shedule:
+      type: object
+      required:
+        - cleanMode
+        - operationMode_id
+        - robot_id
+        - date
+        - time
+        - cleanZone_id
+      properties:
+        shedule_id:
+          type: integer
+          example: 125
+        operationMode_id:
+          type: integer
+          example: 3
+        robot_id:
+          type: integer
+          example: 12
+        cleanMode:
+          type: string
+          enum:
+            - wet
+            - dry
+            - weteQuiet
+            - dryQuiet
+          description: режим уборки робота пылесоса  
+        date:
+          type: string
+          example: 05/02/2023
+        time:
+          type: integer
+          example: 65
+        cleanZone_id:
+          type: integer
+          example: 18
+    
+    Shedules:      
+      type: array
+      items:
+        $ref: "#/components/schemas/Shedule"
+  
+    User:
+      type: object
+      required:
+        - eMail
+        - hash
+        - login
+        - question
+      properties:
+        user_id:
+          type: integer
+          example: 6
+        eMail:
+          type: integer
+          example: geekBrains@mail.ru
+        hash:
+          type: string
+          example: 12SA125SD25DSETYU2101
+        login:
+          type: string
+          example: ALEXX
+        question:
+          type: string
+          example: Ваше любимое блюдо?
+          
+    Users:      
+      type: array
+      items:
+        $ref: "#/components/schemas/User"      
+          
+    Group:
+      type: object
+      required:
+        - user_id
+      properties:
+        group_id:
+          type: integer
+          example: 2
+        user_id:
+          type: integer
+          example: 6
+  
+    Error:    
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+          
+          
+          
+          
+          
+          
+          
+          
